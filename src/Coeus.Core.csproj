@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -9,7 +9,7 @@
     <Version>0.1</Version>
     <Authors>josh.lane</Authors>
     <Company>FuzzyMaths Inc.</Company>
-    <PackageTags>jq;JSON;JSON.NET;parser;</PackageTags>
+    <PackageTags>jq;json;</PackageTags>
     <RepositoryUrl>https://github.com/jplane/Coeus.git</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
