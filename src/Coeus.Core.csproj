@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <PackageId>Coeus</PackageId>
+    <Title>JQ-compatible Queries for JSON.NET</Title>
+    <Description>This package implements JQ-style queries for JToken, JObject, JArray, and friends. These are implemented as extension methods and can be used from any .NET Core process.</Description>
+    <Version>0.1</Version>
+    <Authors>josh.lane</Authors>
+    <Company>FuzzyMaths Inc.</Company>
+    <PackageTags>jq;JSON;JSON.NET;parser;</PackageTags>
+    <RepositoryUrl>https://github.com/jplane/Coeus.git</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Sprache" Version="2.3.1" />
+  </ItemGroup>
+
+</Project>
