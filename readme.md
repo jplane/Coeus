@@ -2,7 +2,7 @@
 
 | | |
 | --- | --- |
-| Coeus NUGET Package | [![NuGet](https://img.shields.io/nuget/v/DurableStateMachines.Core)](https://www.nuget.org/packages/DurableStateMachines.Core/) |
+| Coeus NUGET Package | [![NuGet](https://img.shields.io/nuget/v/Coeus)](https://www.nuget.org/packages/Coeus/) |
 | | |
 
 Simply put, Coeus implements [JQ](https://stedolan.github.io/jq/)-compatible queries for [JSON.NET](https://www.newtonsoft.com/json). Query and update JToken, JObject, JArray, JValue and friends.
