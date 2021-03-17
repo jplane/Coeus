@@ -6,7 +6,7 @@
     <PackageId>Coeus</PackageId>
     <Title>JQ-compatible Queries for JSON.NET</Title>
     <Description>This package implements JQ-style queries for JToken, JObject, JArray, and friends. These are implemented as extension methods and can be used from any .NET Core process.</Description>
-    <Version>0.1</Version>
+    <Version>0.2</Version>
     <Authors>josh.lane</Authors>
     <Company>FuzzyMaths Inc.</Company>
     <PackageTags>jq;json;</PackageTags>
