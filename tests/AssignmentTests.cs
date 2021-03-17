@@ -32,5 +32,17 @@ namespace Coeus.Tests
             Assert.AreEqual(2, output[0].Value<int>());
             Assert.AreEqual(3, output[1].Value<int>());
         }
+
+        [TestMethod]
+        public void DereferenceAssign()
+        {
+            var json = new JObject();
+
+            var output = JQ.EvalToToken(".fooCopy += (({ \"foo\": \"bar\" }) | .foo)", json);
+
+            Assert.IsNotNull(output);
+            Assert.IsTrue(output.Type == JTokenType.Object);
+            Assert.AreEqual("bar", output.Value<string>("fooCopy"));
+        }
     }
 }

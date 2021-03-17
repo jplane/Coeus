@@ -46,7 +46,7 @@ namespace Coeus
                                      .Or(Parse.String("<="))
                                      .Or(Parse.String("and"))
                                      .Or(Parse.String("or")).Token().Text(),
-                                Expression,
+                                ComplexExpression,
                                 (op, lhs, rhs) => new ConditionalResult(op, lhs, rhs));
 
         private static Parser<ParserResult> RecursiveDescent =>

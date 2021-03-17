@@ -193,5 +193,19 @@ namespace Coeus.Tests
             Assert.AreEqual(9, output[2].Value<int>());
             Assert.AreEqual(9, output[3].Value<int>());
         }
+
+        [TestMethod]
+        public void CommaIndexing()
+        {
+            var json = new JArray { 2 };
+
+            var output = JQ.EvalToToken("(.,.,.)[0]", json);
+
+            Assert.IsNotNull(output);
+            Assert.IsTrue(output.Type == JTokenType.Array);
+            Assert.AreEqual(2, output[0].Value<int>());
+            Assert.AreEqual(2, output[1].Value<int>());
+            Assert.AreEqual(2, output[2].Value<int>());
+        }
     }
 }

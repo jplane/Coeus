@@ -37,10 +37,20 @@ namespace Coeus
             return evaluator.Collect(token).ToArray();
         }
 
+        private static Parser<ParserResult> ComplexExpression =>
+                from first in UpdateAssignment
+                                .Or(Assignment)
+                                .Or(DottedPropertyOperator(false))
+                                .Or(DottedOperator)
+                                .Or(Expression)
+                                .Once()
+                from rest in Operator.Or(DottedPropertyOperator(false)).Many()
+                select new PipeResult(first.Concat(rest));
+
         private static Parser<ParserResult> Expression =>
-            UpdateAssignment
-                .Or(Assignment)
-                .Or(ComplexValue)
+             ArrayCtor
+                .Or(ObjCtor)
+                .Or(IfThen)
                 .Or(RecursiveDescent)
                 .Or(Identity)
                 .Or(Null)
@@ -50,16 +60,6 @@ namespace Coeus
 
         private static Parser<ParserResult> Null =>
                 Parse.String("null").Token().Select(_ => new AtomicResult(token => JValue.CreateNull()));
-
-        private static Parser<ParserResult> ComplexValue =>
-                from first in DottedPropertyOperator(false)
-                                      .Or(DottedOperator)
-                                      .Or(Parse.Ref(() => ArrayCtor))
-                                      .Or(Parse.Ref(() => ObjCtor))
-                                      .Or(Parse.Ref(() => IfThen))
-                                      .Once()
-                from rest in Operator.Or(DottedPropertyOperator(false)).Many()
-                select new PipeResult(first.Concat(rest));
 
         private static Parser<ParserResult> Pipe =>
             Parse.ChainOperator(Parse.String("|").Token().Text(),
@@ -108,7 +108,7 @@ namespace Coeus
                 from identifier in Parse.CharExcept('"').Many().Text()
                 from endQuote in Parse.Char('"').Token().Once()
                 from colon in Parse.Char(':').Token().Once()
-                from value in Parse.Ref(() => Expression)
+                from value in Parse.Ref(() => ComplexExpression)
                 select (Func<JToken, IEnumerable<JObject>, IEnumerable<JObject>>)((token, incomingResults) =>
                 {
                     var results = new List<JObject>();

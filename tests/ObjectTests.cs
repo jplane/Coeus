@@ -33,6 +33,30 @@ namespace Coeus.Tests
         }
 
         [TestMethod]
+        public void DereferenceObject()
+        {
+            var json = new JObject();
+
+            var output = JQ.EvalToToken("({ \"foo\": \"bar\" }) | .foo", json);
+
+            Assert.IsNotNull(output);
+            Assert.IsTrue(output.Type == JTokenType.String);
+            Assert.AreEqual("bar", output.Value<string>());
+        }
+
+        [TestMethod]
+        public void DereferenceObject2()
+        {
+            var json = new JObject();
+
+            var output = JQ.EvalToToken("({ \"foo\": \"bar\" }).foo", json);
+
+            Assert.IsNotNull(output);
+            Assert.IsTrue(output.Type == JTokenType.String);
+            Assert.AreEqual("bar", output.Value<string>());
+        }
+
+        [TestMethod]
         public void CreateObjectFromLookupValue()
         {
             var json = new JObject
