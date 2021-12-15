@@ -1,9 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Coeus.Tests
 {
@@ -22,6 +19,29 @@ namespace Coeus.Tests
             Assert.AreEqual(6, output[1].Value<int>());
             Assert.AreEqual(1, output[2].Value<int>());
             Assert.AreEqual(0, output[3].Value<int>());
+        }
+
+        [TestMethod]
+        public void Select()
+        {
+            var jArr = new JArray();
+            var person = new JObject
+            {
+                { "age", 43 }
+            };
+            var secondPerson = new JObject
+            {
+                { "age", 30 }
+            };
+            jArr.Add(person);
+            jArr.Add(secondPerson);
+            var people = new JObject
+            {
+                { "people", jArr }
+            };
+            var output = JQ.EvalToToken("{ \"people\" : (.people | select(.[].age > 40)) }", people);
+            Assert.IsTrue(output.Type == JTokenType.Object);
+            Assert.AreEqual(1, output.SelectToken("people").Children().Count());
         }
 
         [TestMethod]

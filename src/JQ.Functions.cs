@@ -15,6 +15,7 @@ namespace Coeus
                 Funcs.Length
                     .Or(Funcs.Not)
                     .Or(Funcs.Keys)
-                    .Or(Funcs.Has);
+                    .Or(Funcs.Has)
+                    .Or(Funcs.Select);
     }
 }

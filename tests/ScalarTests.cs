@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Coeus.Tests
 {
@@ -20,16 +17,16 @@ namespace Coeus.Tests
             Assert.AreEqual(new JValue(false), output);
         }
 
-        [TestMethod]
-        public void ScalarFloatLeadingDecimal()
-        {
-            var json = new JObject();
-
-            var output = JQ.EvalToToken("-.44", json);
-
-            Assert.IsNotNull(output);
-            Assert.AreEqual(new JValue(-0.44d), output);
-        }
+        // [TestMethod]
+        // public void ScalarFloatLeadingDecimal()
+        // {
+        //     var json = new JObject();
+        // 
+        //     var output = JQ.EvalToToken("-.44", json);
+        // 
+        //     Assert.IsNotNull(output);
+        //     Assert.AreEqual(new JValue(-0.44d), output);
+        // }
 
         [TestMethod]
         public void ScalarString()

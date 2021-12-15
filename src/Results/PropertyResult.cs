@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Coeus.Results
 {
@@ -19,7 +16,6 @@ namespace Coeus.Results
         public override IEnumerable<JToken> Collect(JToken token)
         {
             JToken value = null;
-
             if (token is JObject jobj)
             {
                 if (!jobj.TryGetValue(_propertyName, out value))
