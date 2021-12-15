@@ -101,6 +101,21 @@ namespace Coeus.Tests
         }
 
         [TestMethod]
+        public void GreaterOrEqualThan()
+        {
+            var json = new JObject
+            {
+                ["foo"] = 7
+            };
+
+            var output = JQ.EvalToToken(".foo >= 7", json);
+
+            Assert.IsNotNull(output);
+            Assert.IsTrue(output.Type == JTokenType.Boolean);
+            Assert.AreEqual(true, output.Value<bool>());
+        }
+
+        [TestMethod]
         public void BooleanOperators()
         {
             var output = JQ.EvalToToken("1 and 2, null or null, [] and \"foo\" | not", new JObject());

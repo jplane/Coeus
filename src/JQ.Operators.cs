@@ -40,10 +40,10 @@ namespace Coeus
         private static Parser<ParserResult> Conditional =>
             Parse.ChainOperator(Parse.String("==")
                                      .Or(Parse.String("!="))
-                                     .Or(Parse.String(">"))
                                      .Or(Parse.String(">="))
-                                     .Or(Parse.String("<"))
                                      .Or(Parse.String("<="))
+                                     .Or(Parse.String(">"))
+                                     .Or(Parse.String("<"))
                                      .Or(Parse.String("and"))
                                      .Or(Parse.String("or")).Token().Text(),
                                 ComplexExpression,
