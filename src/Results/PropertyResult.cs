@@ -13,6 +13,8 @@ namespace Coeus.Results
             _propertyName = propertyName;
         }
 
+        internal string PropertyName { get => _propertyName; }
+
         public override IEnumerable<JToken> Collect(JToken token)
         {
             JToken value = null;

@@ -18,6 +18,30 @@ namespace Coeus.Results
             _results = results.ToArray();
         }
 
+        public EmptyObject CreateEmptyObject()
+        {
+            var result = new JObject();
+            JObject child = null;
+            var propertyNames = _results.Where(r => r is PropertyResult).Cast<PropertyResult>().Select(p => p.PropertyName);
+            for(int i = 0; i < propertyNames.Count(); i++)
+            {
+                var name = propertyNames.ElementAt(i);
+                if (child == null)
+                {
+                    child = new JObject();
+                    result.Add(name, child);
+                }
+                else
+                {
+                    var record = new JObject();
+                    child.Add(name, record);
+                    child = record;
+                }
+            }
+
+            return new EmptyObject(result, string.Join(".", propertyNames));
+        }
+
         public override IEnumerable<JToken> Collect(JToken token)
         {
             var tokens = new List<JToken>
