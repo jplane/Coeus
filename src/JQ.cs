@@ -28,6 +28,17 @@ namespace Coeus
             }
         }
 
+        public static EmptyObject ParseToEmptyObject(this string jq)
+        {
+            var parsed = Pipe.End().Parse(jq) as PipeResult;
+            if(parsed == null)
+            {
+                return null;
+            }
+
+            return parsed.CreateEmptyObject();
+        }
+
         public static IEnumerable<JToken> Eval(this string jq, JToken token)
         {
             var evaluator = _evaluators.GetOrAdd(jq, _ => Pipe.End().Parse(jq));
